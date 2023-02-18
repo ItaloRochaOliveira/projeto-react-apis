@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Footer } from "../../Components/Footer/Footer";
 import { Header } from "../../Components/Header/Header"
-import { BotaoPokedex, HeaderLogin } from "./styled";
+import { BotaoPokedex, CorDaMain, HeaderLogin, Pokedex, TodosPokemons } from "./styled";
 import axios from "axios"
 import { Card } from "../../Components/Card/Card";
 
 export const Home = () => {
     const [pokedex, setPokedex] = useState([])
+    const [pokemonNaPokedex, setPokemonNaPokedex] = useState([])
+
     const carregarPokedex = async() => {
         try{
             const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=30&offset=0")
@@ -27,14 +29,14 @@ export const Home = () => {
                 <BotaoPokedex>pokedex</BotaoPokedex>
             </HeaderLogin>
 
-            <main>
-                Todos Pokémons
-                <div>
+            <CorDaMain>
+                <TodosPokemons>Todos Pokémons:</TodosPokemons>
+                <Pokedex>
                     {pokedex.map((pokemon) => {
                         return <Card key={pokemon.name} namePokemon={pokemon.name}/> 
                     })}
-                </div>
-            </main>
+                </Pokedex>
+            </CorDaMain>
     
             <Footer />
         </>
