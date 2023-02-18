@@ -5,6 +5,8 @@ export const HeaderLogin = styled.div`
     justify-content: center;
 
     position: relative;
+
+    margin: 21px 0;
 `
 
 export const BotaoPokedex = styled.button`
@@ -19,7 +21,7 @@ export const BotaoPokedex = styled.button`
     width: 287px;
     height: 74px;
     left: 1050px;
-    top: 41px;
+    top: 20px;
 
 
     background: #33A4F5;
@@ -30,4 +32,25 @@ export const BotaoPokedex = styled.button`
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
+`
+
+export const Pokedex = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`
+
+export const CorDaMain = styled.main`
+    background: #DDDDDD;
+`
+
+export const TodosPokemons = styled.p`
+    color: white;
+
+    margin-left: 20px;
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 4.5rem;
 `

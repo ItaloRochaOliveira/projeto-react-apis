@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios"
-import { CorDoCard } from "./styled";
+import { BotaoCapturar, BotaoDetalhes, CaracteristicasDosPokemons, EspacoEntreItens, EstiloGeralDoCard, IdDoPokemon, ImagemDoPokemon, InfoDosPokemon, NomeDoPokemon, TipoDoPokemon } from "./styled";
 
 export const Card = ({
     namePokemon,
@@ -9,14 +9,16 @@ export const Card = ({
     const [name, setName] = useState("")
     const [types, setTypes] = useState([])
     const [pokemonImage, setPokemonImage] = useState("")
+
     const carregarPokemons = async() => {
         try{
             const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${namePokemon}`)
             setId(response.data.id)
             setName(response.data.name)
             setTypes(response.data.types)
-            setPokemonImage(response.data.sprites.front_default)
-            console.log(response.data.sprites)
+            setPokemonImage(response.data.sprites.other.dream_world.front_default)
+            console.log(response.data)
+            
             
         } catch(erro){
             console.log(erro.response)
@@ -26,24 +28,26 @@ export const Card = ({
         carregarPokemons()
     },
     [])
-    return(
+    return(   
+        types.length > 0 && 
+        <EstiloGeralDoCard>
+        <InfoDosPokemon type={types[0].type.name}>
+            <CaracteristicasDosPokemons>
+                <NomeDoPokemon>#{id}</NomeDoPokemon>
+                <IdDoPokemon>{name} </IdDoPokemon>
+                {types.map((uniqueType) => {
+                    console.log(uniqueType)
+                    return <TipoDoPokemon type={uniqueType.type.name}>{uniqueType.type.name}</TipoDoPokemon>
+                })}
+            </CaracteristicasDosPokemons>
+            <EspacoEntreItens>
+                <BotaoDetalhes onClick={() => console.log("entrou")}>detalhes</BotaoDetalhes >
+                <BotaoCapturar>capturar!</BotaoCapturar>
+            </EspacoEntreItens>
+             
+        </InfoDosPokemon>
+        <ImagemDoPokemon src={pokemonImage}/>
         
-        <CorDoCard type={types[0].type.name}>
-            {console.log(types[0].type.name)}
-            <div>
-                <div>
-                    <p>{name} </p>
-                    <p>{id}</p>
-                    {types.map((uniqueType) => {
-                        return <p>{uniqueType.type.name}</p>
-                    })}
-                </div>
-                <img src={pokemonImage}/> 
-            </div>
-            <div>
-                <button>detalhes</button>
-                <button>capturar!</button>
-            </div>
-        </CorDoCard>
+    </EstiloGeralDoCard>
     )
 }
