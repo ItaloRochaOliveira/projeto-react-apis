@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Home } from "../pastas/Home/Home"
-import { Pokedex } from "../pastas/Pokedex"
+import { Pokedex } from "../pastas/Pokedex/Pokedex"
 import { Detalhes } from "../pastas/Detalhes"
 import { ErroPage } from "../pastas/ErroPage";
 
@@ -10,7 +10,7 @@ export const Router = () => {
             <Routes>
                 <Route path="/" element={<Home />}/>
                 <Route path="/pokedex" element={<Pokedex />}/>
-                <Route path="/pokedex/:id-pokemon" element={<Detalhes />}/>
+                <Route path="/detalhes/:id-pokemon" element={<Detalhes />}/>
                 <Route path="*" element={<ErroPage />}/>
             </Routes>
         </BrowserRouter>

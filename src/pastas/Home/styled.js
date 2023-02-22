@@ -20,8 +20,8 @@ export const BotaoPokedex = styled.button`
 
     width: 287px;
     height: 74px;
-    left: 1050px;
-    top: 20px;
+    left: 75%;
+    top: 15%;
 
 
     background: #33A4F5;
@@ -40,7 +40,7 @@ export const Pokedex = styled.div`
 `
 
 export const CorDaMain = styled.main`
-    background: #DDDDDD;
+    background: #5E5E5E;
 `
 
 export const TodosPokemons = styled.p`

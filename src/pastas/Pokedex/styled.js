@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+export const Content = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+
+    min-height: 100vh;
+
+    background: #5E5E5E;
+`
+
 export const EstiloGeralDoCard = styled.div`
     position: relative;
 
@@ -119,10 +128,12 @@ export const BotaoDetalhes = styled.a`
     color: white;
 `
 
-export const BotaoCapturar = styled.button`
+export const BotaoExcluir = styled.button`
     width: 146px;
     height: 38px;
     padding: 4px 10px;
 
     border-radius: 8px;
+
+    background: #FF6262;
 `
