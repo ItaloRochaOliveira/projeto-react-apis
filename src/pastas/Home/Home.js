@@ -10,8 +10,6 @@ import { PokemonContexto } from "../../contexto/PokemonContexto";
 export const Home = () => {
     const navigate = useNavigate()
     const {pokedex} = useContext(PokemonContexto)
-    console.log(pokedex)
-    
     return(
         <>
             <HeaderLogin>
