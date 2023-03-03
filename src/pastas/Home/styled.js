@@ -39,25 +39,3 @@ export const BotaoPokedex = styled.button`
 
     
 `
-
-export const Pokedex = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-`
-
-export const CorDaMain = styled.main`
-    background: #5E5E5E;
-`
-
-export const TodosPokemons = styled.p`
-    color: white;
-
-    margin-left: 20px;
-
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 3rem;
-    line-height: 4.5rem;
-`

@@ -1,5 +1,6 @@
 import { Router } from './routes/Router';
 import styled, {createGlobalStyle} from 'styled-components';
+import { Box, ChakraProvider } from '@chakra-ui/react';
 
 const GlobalStyled = createGlobalStyle`
   *{
@@ -16,12 +17,11 @@ const ContainerGeral = styled.div`
 
 function App() {
   return (
-    <>
-      <GlobalStyled />
-      <ContainerGeral>
-        <Router />
-      </ContainerGeral>
-    </>
+      <ChakraProvider resetCSS>
+        <Box maxW={"100vw"} minH={"100vh"}>
+          <Router />
+        </Box>
+      </ChakraProvider>
   );
 }
 
