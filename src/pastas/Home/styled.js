@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-export const HeaderLogin = styled.div`
+export const HeaderLogin = styled.header`
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 
     position: relative;
@@ -10,7 +11,11 @@ export const HeaderLogin = styled.div`
 `
 
 export const BotaoPokedex = styled.button`
-    position: absolute;
+    @media(min-width: 700px){
+        position: absolute;
+        left: 75%;
+        top: 15%;
+    }
     
     display: flex;
 
@@ -20,8 +25,7 @@ export const BotaoPokedex = styled.button`
 
     width: 287px;
     height: 74px;
-    left: 75%;
-    top: 15%;
+    
 
 
     background: #33A4F5;
@@ -32,11 +36,14 @@ export const BotaoPokedex = styled.button`
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
+
+    
 `
 
 export const Pokedex = styled.div`
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 `
 
 export const CorDaMain = styled.main`

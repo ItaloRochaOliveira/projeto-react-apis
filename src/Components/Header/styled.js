@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HeaderEstilizado = styled.header`
+export const HeaderEstilizado = styled.div`
     display: flex; 
     justify-content: center; 
 `

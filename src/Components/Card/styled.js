@@ -32,7 +32,7 @@ export const InfoDosPokemon = styled.div`
             default:
                 return "gray"
     }}};
-    min-height: 33.6vh;
+    max-height: 33.6vh;
     min-width: 400px;
     width: 25vw;
     margin-top: 30px;
@@ -61,8 +61,8 @@ export const IdDoPokemon  = styled.p`
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 2rem;
-    line-height: 2rem;
+    font-size: 1.2rem;
+    line-height: 1rem;
 `
 
 export const TipoDoPokemon = styled.span`
