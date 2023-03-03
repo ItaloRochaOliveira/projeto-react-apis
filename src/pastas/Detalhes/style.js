@@ -13,13 +13,10 @@ export const EstiloGeralDoCard = styled.div`
     position: relative;
 
     min-width: 400px;
-    width: 25vw;
+    width: 90vw;
     
     padding: 20px;
-    margin: 10px;
 `
-
-export const BotaoVoltar = styled.button``
 
 export const InfoDosPokemon = styled.div`
     background: ${(props) => {
@@ -44,8 +41,7 @@ export const InfoDosPokemon = styled.div`
                 return "gray"
     }}};
     min-height: 33.6vh;
-    min-width: 400px;
-    width: 25vw;
+    width: 90vw;
     margin-top: 30px;
     padding: 20px;
 
