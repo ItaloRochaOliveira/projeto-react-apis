@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { EstiloGeralDoCard, InfoDosPokemon, CaracteristicasDosPokemons, NomeDoPokemon, IdDoPokemon, TipoDoPokemon, ImagemDoPokemon, EspacoEntreItens, BotaoDetalhes, BotaoExcluir } from "./style";
 import { usePokemon } from "../../customHooks/usePokemon";
+import { Header } from "../../Components/Header/Header";
 
 export const Detalhes = () => {
     const {namePokemon} = useParams()
@@ -11,6 +12,7 @@ export const Detalhes = () => {
     
     return(
         <>
+        <Header />
         {data.name !== undefined &&
              <EstiloGeralDoCard key={data.name}>
                  <InfoDosPokemon type={data.types[0]?.type.name}>

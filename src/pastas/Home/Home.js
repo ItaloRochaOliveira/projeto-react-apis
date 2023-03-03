@@ -6,25 +6,31 @@ import { BotaoPokedex, CorDaMain, HeaderLogin, Pokedex, TodosPokemons } from "./
 import {useNavigate} from "react-router-dom"
 import { irParaPokedex } from "../../routes/coordinato";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 export const Home = () => {
     const navigate = useNavigate()
     const {pokedex} = useContext(PokemonContexto)
     return(
         <>
-            <HeaderLogin>
-                <Header />
-                <BotaoPokedex onClick={() => irParaPokedex(navigate)}>pokedex</BotaoPokedex>
-            </HeaderLogin>
+            <Header />
 
-            <CorDaMain>
-                <TodosPokemons>Todos Pokémons:</TodosPokemons>
-                    <Pokedex>
+            <Box bg={"#5E5E5E"}>
+                <Text 
+                color={"white"} 
+                ml={"20px"} 
+                fontFamily={"Poppins"}
+                fontStyle={"normal"}
+                fontWeight={700}
+                fontSize={"3rem"}
+                lineHeight={"4rem"}
+                >Todos Pokémons:</Text>
+                    <Flex wrap={"wrap"} justify={"center"}>
                         {pokedex.map((pokemon) => {
                             return <Card key={pokemon.name} namePokemon={pokemon.name}/> 
                         })}
-                    </Pokedex>
-            </CorDaMain>
+                    </Flex>
+            </Box>
     
             <Footer />
         </>
