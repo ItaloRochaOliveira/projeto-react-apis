@@ -1,6 +1,8 @@
 import { Router } from './routes/Router';
 import styled, {createGlobalStyle} from 'styled-components';
 import { Box, ChakraProvider } from '@chakra-ui/react';
+import { Header } from './Components/Header/Header';
+import { theme } from './theme/theme';
 
 const GlobalStyled = createGlobalStyle`
   *{
@@ -17,7 +19,7 @@ const ContainerGeral = styled.div`
 
 function App() {
   return (
-      <ChakraProvider resetCSS>
+      <ChakraProvider theme={theme} resetCSS>
         <Box maxW={"100vw"} minH={"100vh"}>
           <Router />
         </Box>

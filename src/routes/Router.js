@@ -3,10 +3,12 @@ import { Home } from "../pastas/Home/Home"
 import { Pokedex } from "../pastas/Pokedex/Pokedex"
 import { Detalhes } from "../pastas/Detalhes/Detalhes"
 import { ErroPage } from "../pastas/ErroPage";
+import { Header } from "../Components/Header/Header";
 
 export const Router = () => {
     return(
         <BrowserRouter>
+        <Header />
             <Routes>
                 <Route path="/" element={<Home />}/>
                 <Route path="/pokedex" element={<Pokedex />}/>

@@ -9,21 +9,16 @@ import { PokemonContexto } from "../../contexto/PokemonContexto";
 import { Box, Flex, Text } from "@chakra-ui/react";
 
 export const Home = () => {
-    const navigate = useNavigate()
     const {pokedex} = useContext(PokemonContexto)
     return(
         <>
-            <Header />
-
             <Box bg={"#5E5E5E"}>
                 <Text 
-                color={"white"} 
-                ml={"20px"} 
-                fontFamily={"Poppins"}
-                fontStyle={"normal"}
-                fontWeight={700}
-                fontSize={"3rem"}
-                lineHeight={"4rem"}
+                color={"white"}
+                ml={"20px"}
+                font={"padrao"}
+                fontSize={"1.5rem"}
+                lineHeight={"2.25rem"}
                 >Todos Pokémons:</Text>
                     <Flex wrap={"wrap"} justify={"center"}>
                         {pokedex.map((pokemon) => {
