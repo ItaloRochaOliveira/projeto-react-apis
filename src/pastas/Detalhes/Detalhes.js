@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { EstiloGeralDoCard, InfoDosPokemon, CaracteristicasDosPokemons, NomeDoPokemon, IdDoPokemon, TipoDoPokemon, ImagemDoPokemon, EspacoEntreItens, BotaoDetalhes, BotaoExcluir } from "./style";
-import { usePokemon } from "../../customHooks/usePokemon";
+import { usePokemon } from "../../hooks/usePokemon";
 import { Header } from "../../Components/Header/Header";
 
 export const Detalhes = () => {

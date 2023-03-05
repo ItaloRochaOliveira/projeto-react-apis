@@ -18,10 +18,7 @@ export const Pokedex = () => {
 
     return(
         <>
-            <header>
-                <button onClick={() => irParaHome(navigate)}>Todos Pokemons</button>
-                <Header />
-            </header>
+            <button onClick={() => irParaHome(navigate)}>Todos Pokemons</button>
             <Content>
             {pokemonNaPokedex.map((pokemon) => {
                  return pokemon.types.length > 0 && 
