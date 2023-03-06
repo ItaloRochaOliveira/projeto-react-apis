@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import { BotaoCapturar, BotaoDetalhes, CaracteristicasDosPokemons, EspacoEntreItens, EstiloGeralDoCard, IdDoPokemon, ImagemDoPokemon, InfoDosPokemon, NomeDoPokemon, TipoDoPokemon } from "./styled";
+import React, { useContext} from "react";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
 import { detalhesDoPokemon } from "../../routes/coordinato";
 import { useNavigate } from "react-router-dom";
 import { usePokemon } from "../../hooks/usePokemon";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 
 export const Card = ({
     namePokemon,
@@ -36,16 +35,16 @@ export const Card = ({
         key={data.id}
 
         position={"relative"}
-        w={"400px"}
-        p={"20px"}
+        w={"420px"}
         m={"10px"}
         >
             <Box
-            bg={`type.${data.types[0]?.type.name}`}
-            maxH={"33.6vh"}
-            minW={"400px"}
+            bg={`typeColorCard.${data.types[0]?.type.name}`}
+            minH={"220px"}
+            maxH={"28vh"}
+            minW={"420px"}
             w={"25vw"}
-            mt={"30px"}
+            mt={"60px"}
             p={"20px"}
             borderRadius={"12px"}
             >
@@ -64,17 +63,54 @@ export const Card = ({
                     >
                     {data.name}
                     </Text>
+                    <Flex gap={"17px"}>
                     {data.types.map((uniqueType) => {
-                        return <TipoDoPokemon type={uniqueType.type.name}>{uniqueType.type.name}</TipoDoPokemon>
+                        return <Box
+                        textAlign={"center"}
+                        bg={`typeColorType.${uniqueType.type.name}`} 
+                        w={"74px"}
+                        h={"31px"}
+                        border={"1px dashed rgba(255, 255, 255, 0.47)"}
+                        borderRadius={"8px"}
+                        >{uniqueType.type.name}</Box>
                     })}
+                    </Flex>
                 </Box>
-                <EspacoEntreItens>
-                    <BotaoDetalhes onClick={() => detalhesDoPokemon(navigate, data.name)}>detalhes</BotaoDetalhes >
-                    <BotaoCapturar onClick={() => capturarPokemon(data.name)}>capturar!</BotaoCapturar>
-                </EspacoEntreItens>
+                <Flex justify={"space-between"}>
+                    <Button 
+                    onClick={() => detalhesDoPokemon(navigate, data.name)}
+                    
+                    textDecor={"underline"}
+                    border={"none"}
+                    bg={`typeColorCard.${data.types[0]?.type.name}`}
+                    color={"white"}
+                    _hover={{bg: "none"}}
+                    >
+                        detalhes
+                    </Button>
+                    <Button
+                    onClick={() => capturarPokemon(data.name)}
+                    
+                    w={"146px"}
+                    h={"38px"}
+                    mb={"60px"}
+                    py={"4px"}
+                    px={"10px"}
+                    borderRadius={"8px"}
+                    >capturar!</Button>
+                </Flex>
                 
             </Box>
-            <ImagemDoPokemon src={data.sprites.other.dream_world.front_default}/>
+            <Image
+            src={data.sprites.other.dream_world.front_default}
+    
+            position={"absolute"}
+            top={"0"}
+            right={"0"}
+
+            w={"193px"}
+            h={"193px"}
+            />
         
     </Box>
     )
