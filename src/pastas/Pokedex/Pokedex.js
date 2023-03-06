@@ -1,9 +1,10 @@
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../../Components/Header/Header";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
-import { irParaHome } from "../../routes/coordinato";
+import { detalhesDoPokemon, irParaHome, irParaPokedex } from "../../routes/coordinato";
 import { Content, EstiloGeralDoCard, InfoDosPokemon, CaracteristicasDosPokemons, NomeDoPokemon, IdDoPokemon, TipoDoPokemon, ImagemDoPokemon, EspacoEntreItens, BotaoDetalhes, BotaoExcluir } from "./styled";
 
 export const Pokedex = () => {
@@ -18,30 +19,95 @@ export const Pokedex = () => {
 
     return(
         <>
-            <button onClick={() => irParaHome(navigate)}>Todos Pokemons</button>
-            <Content>
+            <Flex
+            wrap={"wrap"}
+
+            minH={"100vh"}
+            bg={"#5E5E5E"}
+            >
             {pokemonNaPokedex.map((pokemon) => {
-                 return pokemon.types.length > 0 && 
-                 <EstiloGeralDoCard key={pokemon.name}>
-                 <InfoDosPokemon type={pokemon.types[0].type.name}>
-                     <CaracteristicasDosPokemons>
-                         <IdDoPokemon>#{pokemon.id}</IdDoPokemon>
-                         <NomeDoPokemon>{pokemon.name} </NomeDoPokemon>
-                         {pokemon.types.map((uniqueType) => {
-                             return <TipoDoPokemon type={uniqueType.type.name}>{uniqueType.type.name}</TipoDoPokemon>
-                         })}
-                     </CaracteristicasDosPokemons>
-                     <EspacoEntreItens>
-                         <BotaoDetalhes onClick={() => console.log("entrou")}>detalhes</BotaoDetalhes >
-                         <BotaoExcluir onClick={() => excluirPokemon(pokemon.name)}>Exluir</BotaoExcluir>
-                     </EspacoEntreItens>
+                return pokemon.types.length > 0 && 
+                    <Box
+                    position={"relative"}
+                    w={"420px"}
+                    m={"10px"}
+                    
+                    key={pokemon.name}>
+                    <Box 
+                    bg={`typeColorCard.${pokemon.types[0]?.type.name}`}
+                    minH={"220px"}
+                    maxH={"28vh"}
+                    minW={"420px"}
+                    w={"25vw"}
+                    mt={"60px"}
+                    p={"20px"}
+                    borderRadius={"12px"}
+                    >
+                     <Box color={"white"} mb={"50px"}>
+                         <Text
+                         font={"padrao"}
+                         fontSize={"1.2rem"}
+                         lineHeight={"1rem"}
+                         >#{pokemon.id}</Text>
+                         <Text
+                         font={"padrao"}
+                         fontSize={"2rem"}
+                         lineHeight={"2rem"}
+                         mb={"20px"}
+                         >{pokemon.name} </Text>
+                         <Flex gap={"17px"}>
+                            {pokemon.types.map((uniqueType) => {
+                                return <Box 
+                                textAlign={"center"}
+                                bg={`typeColorType.${uniqueType.type.name}`} 
+                                w={"74px"}
+                                h={"31px"}
+                                border={"1px dashed rgba(255, 255, 255, 0.47)"}
+                                borderRadius={"8px"}
+                                >{uniqueType.type.name}</Box>
+                            })}
+                         </Flex>
+                     </Box>
+                     <Flex justify={"space-between"}>
+                        <Button
+                        onClick={() => detalhesDoPokemon(navigate, pokemon.name)}
+                         
+                        textDecor={"underline"}
+                        border={"none"}
+                        bg={`typeColorCard.${pokemon.types[0]?.type.name}`}
+                        color={"white"}
+                        _hover={{bg: "none"}}
+                            >detalhes</Button >
+                        <Button 
+                        onClick={() => excluirPokemon(pokemon.name)}
+                         
+                        w={"146px"}
+                        h={"38px"}
+                        mb={"60px"}
+                        py={"4px"}
+                        px={"10px"}
+                        borderRadius={"8px"}
+
+                        bg={"#FF6262"}
+                        _hover={{bg:"#FFA07A"}}
+                         >Exluir</Button>
+                     </Flex>
                       
-                 </InfoDosPokemon>
-                 <ImagemDoPokemon src={pokemon.pokemonImage}/>
+                </Box>
+                <Image
+                src={pokemon.pokemonImage}
+                
+                position={"absolute"}
+                top={"0"}
+                right={"0"}
+
+                w={"193px"}
+                h={"193px"}
+                />
                  
-             </EstiloGeralDoCard>
+             </Box>
             })}
-            </Content>
+            </Flex>
         </>
             
         

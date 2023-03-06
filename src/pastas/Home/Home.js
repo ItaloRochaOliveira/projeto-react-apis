@@ -15,10 +15,13 @@ export const Home = () => {
             <Box bg={"#5E5E5E"}>
                 <Text 
                 color={"white"}
-                ml={"20px"}
+
+                ml={"40px"}
+                pt={"50px"}
+
                 font={"padrao"}
-                fontSize={"1.5rem"}
-                lineHeight={"2.25rem"}
+                fontSize={"3rem"}
+                lineHeight={"4.5rem"}
                 >Todos Pokémons:</Text>
                     <Flex wrap={"wrap"} justify={"center"}>
                         {pokedex.map((pokemon) => {
