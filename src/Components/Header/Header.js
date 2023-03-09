@@ -1,7 +1,7 @@
 import { ChevronLeftIcon } from "@chakra-ui/icons";
 import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import React, { useContext } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
 import { pokemon } from "../../img/img"
 import { irParaHome, irParaPokedex } from "../../routes/coordinato";
@@ -10,7 +10,12 @@ export const Header = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const detalhes = /^\/detalhes\/.+/.test(location.pathname)
+    const namePokemon = location.pathname.slice(10,20)
+
+    console.log(location.pathname.slice(9,20))
+
+    // outra forma de confirmar a página
+    // const detalhes = /^\/detalhes\/.+/.test(location.pathname)
 
     const {pokemonNaPokedex, setPokemonNaPokedex} = useContext(PokemonContexto)
     
@@ -46,16 +51,16 @@ export const Header = () => {
                     onClick={() => irParaPokedex(navigate)}
 
                     bg={"#33A4F5"}
-                     color={"white"} 
-                     w={"287px"}
-                     h={"74px"}
-                     mr={"20px"} 
+                    color={"white"} 
+                    w={"287px"}
+                    h={"74px"}
+                    mr={"20px"} 
 
-                     fontFamily={"Poppins"}
-                     fontStyle={"normal"}
-                     fontWeight={700}
-                     fontSize={"24px"}
-                     lineHeight={"34px"}>pokédex</Button>
+                    fontFamily={"Poppins"}
+                    fontStyle={"normal"}
+                    fontWeight={700}
+                    fontSize={"24px"}
+                    lineHeight={"34px"}>pokédex</Button>
                 </Box>
             </Flex>
         ) 
@@ -107,7 +112,7 @@ export const Header = () => {
                 
             </Flex>
         ) 
-    } else if(detalhes){
+    } else if(location.pathname === `/detalhes/${namePokemon}`){
         return(
             <Flex
             justify={"space-between"} 
@@ -151,18 +156,26 @@ export const Header = () => {
                 >
                     <Image src={pokemon} /> 
                 </Box>    
-                <Box w={["0%", "0%", "25%"]}>
+                <Box 
+                w={["0%", "0%", "25%"]}
+                
+                display={"flex"} 
+                justifyContent={"center"}
+                alignItems={"center"}
+                >
                     <Button 
                     onClick={() => excluirPokemon(pokemon.name)}
                         
-                    w={"146px"}
-                    h={"38px"}
-                    mb={"60px"}
-                    py={"4px"}
-                    px={"10px"}
+                    w={"287px"}
+                    h={"74px"}
+
+                    font={"padrao"}
+                    fontSize={"24px"}
+                    lineHeight={"34px"}
                     borderRadius={"8px"}
 
                     bg={"#FF6262"}
+                    color={"white"}
                     _hover={{bg:"#FFA07A"}}
                     >Exluir</Button>
                 </Box>

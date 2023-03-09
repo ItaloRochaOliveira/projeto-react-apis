@@ -2,10 +2,8 @@ import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header } from "../../Components/Header/Header";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
 import { detalhesDoPokemon, irParaHome, irParaPokedex } from "../../routes/coordinato";
-import { Content, EstiloGeralDoCard, InfoDosPokemon, CaracteristicasDosPokemons, NomeDoPokemon, IdDoPokemon, TipoDoPokemon, ImagemDoPokemon, EspacoEntreItens, BotaoDetalhes, BotaoExcluir } from "./styled";
 
 export const Pokedex = () => {
     const navigate = useNavigate()

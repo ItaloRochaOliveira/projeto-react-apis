@@ -19,11 +19,6 @@ export const usePokemon = (url, namePokemon, estadoInicial) => {
                 setErro(true)
                 console.log(erro.response)
             })
-        
-    
-            // console.log("normal: ",response.data.sprites.other.dream_world.front_default)
-            // console.log("Gif: ", response.data.sprites.versions["generation-v"]["black-white"].animated.front_default)
-        
     },
     [])
     return [data, carregando, erro]
