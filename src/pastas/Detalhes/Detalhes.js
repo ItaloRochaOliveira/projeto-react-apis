@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { usePokemon } from "../../hooks/usePokemon";
-import { Box, Flex, Heading, Image, Progress, Text } from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Image, Progress, Text } from "@chakra-ui/react";
 
 export const Detalhes = () => {
     const {namePokemon} = useParams()
@@ -59,9 +59,7 @@ export const Detalhes = () => {
                     borderRadius={"12px"}
                     >
                     <Flex direction={"column"} >
-                        <Flex
-                        justify={"center"}
-                        align={"center"}
+                        <Center
                         bg={"white"}
 
                         w={"282px"}
@@ -75,10 +73,8 @@ export const Detalhes = () => {
                             w={"111px"}
                             h={"111px"}
                             />
-                        </Flex>
-                        <Flex  
-                        justify={"center"}
-                        align={"center"}
+                        </Center>
+                        <Center
                         bg={"white"}
 
                         w={"282px"}
@@ -92,13 +88,14 @@ export const Detalhes = () => {
                             w={"111px"}
                             h={"111px"}
                             />
-                        </Flex>
+                        </Center>
                         
                     </Flex>
                     <Box
                     bg={"white"}
 
-                    w={"360px"}
+                    minW={"360px"}
+                    w={"27%"}
                     p={"18px"}
                     m={"26px"}
                     
@@ -129,7 +126,8 @@ export const Detalhes = () => {
                                 value={state.base_stat} 
                                 colorScheme={state.base_stat < 50 ? "orange" : "yellow"} 
                                 
-                                w={"60%"}
+                                h={"10px"}
+                                w={"66%"}
                                 borderRadius={"4px"}
                                 />
                                 </Flex>
@@ -150,7 +148,7 @@ export const Detalhes = () => {
                             <Box 
                             display={"flex"}
                             alignSelf={"center"}                                
-                            w={"60%"}
+                            w={"66%"}
                             borderRadius={"4px"}
                             />
                         </Flex>
@@ -163,10 +161,11 @@ export const Detalhes = () => {
                             font={"padrao"}
                             fontSize={"1.2rem"}
                             lineHeight={"1rem"}
+                            mb={"10px"}
                             >#{data.id}</Text>
                             <Text
                             font={"padrao"}
-                            fontSize={"2rem"}
+                            fontSize={"3rem"}
                             lineHeight={"2rem"}
                             mb={"20px"}
                             >{data.name} </Text>
@@ -184,10 +183,29 @@ export const Detalhes = () => {
                             </Flex>
                         </Box>
 
-                        <Box bg={"white"} borderRadius={"8px"}>
-                            <Heading>Moves</Heading>
+                        <Box 
+                        bg={"white"} 
+                        borderRadius={"8px"}
+                        minW={"292px"}
+                        h={"453px"}
+                        p={"18px"}
+                        >
+                            <Heading mb={"18px"}>Moves</Heading>
                             {data.moves.slice(0,5).map((move) => {
-                                return <Text>{move.move.name}</Text>
+                                return <Flex
+                                align={"center"}
+
+                                w={"fit-content"}
+                                h={"37px"}
+                                p={"10px"}
+                                mb={"18px"}
+
+                                bg={"#ECECEC"}
+                                border= {"1px dashed rgba(0, 0, 0, 0.14)"}
+                                borderRadius= {"12px"}
+                                >
+                                    <Text align="center">{move.move.name}</Text>
+                                </Flex>
                             })}
                         </Box>
                         </Box>
@@ -199,8 +217,8 @@ export const Detalhes = () => {
                     top={"0"}
                     right={"0"}
 
-                    w={["50px", "50px", "270px"]}
-                    h={["50px", "50px", "270px"]}
+                    w={["50px", "50px","50px", "270px"]}
+                    h={["50px", "50px","50px", "270px"]}
                     />
                </Flex>
             }
