@@ -14,8 +14,6 @@ export const Card = ({
 
     const [data, isLoading, erro] = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, namePokemon, {})
            
-            // console.log("normal: ",response.data.sprites.other.dream_world.front_default)
-            // console.log("Gif: ", response.data.sprites.versions["generation-v"]["black-white"].animated.front_default)
     const capturarPokemon = (name) => {
         const temPokemon = pokemonNaPokedex.find((pokemon) => pokemon.name === name)
         if (temPokemon) {
@@ -25,7 +23,7 @@ export const Card = ({
                 id: data.id,
                 name: data.name,
                 types: data.types,
-                pokemonImage: data.sprites.other.dream_world.front_default,
+                pokemonImage: data["sprites"]["other"]["official-artwork"]["front_default"],
             }])
         }
     }
@@ -102,7 +100,7 @@ export const Card = ({
                 
             </Box>
             <Image
-            src={data.sprites.other.dream_world.front_default}
+            src={data["sprites"]["other"]["official-artwork"]["front_default"]}
     
             position={"absolute"}
             top={"0"}

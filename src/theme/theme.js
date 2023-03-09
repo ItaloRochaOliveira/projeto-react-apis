@@ -18,8 +18,8 @@ export const theme = extendTheme({
             water: "#33A4F5",
             bug: "#316520",
             poison: "#AD61AE",
-            electric: "yellow",
-            ground: "brown",
+            electric: "#F4D23B",
+            ground: "#D97745",
             normal: "#8A8A8A",
             flying: "#6892B0"
         }
