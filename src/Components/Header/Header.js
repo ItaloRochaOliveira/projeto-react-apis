@@ -17,8 +17,10 @@ export const Header = () => {
     // outra forma de confirmar a página
     // const detalhes = /^\/detalhes\/.+/.test(location.pathname)
 
-    const {pokemonNaPokedex, setPokemonNaPokedex} = useContext(PokemonContexto)
+    const {pokedex, pokemonNaPokedex, setPokemonNaPokedex} = useContext(PokemonContexto)
     
+    const pokemonEstaNaPokedex = pokemonNaPokedex.find((pokemon) => pokemon.name === namePokemon)
+
     const excluirPokemon = (name) => {
         const pokemon = pokemonNaPokedex.filter((pokemon) => pokemon.name !== name)
         setPokemonNaPokedex(pokemon)
@@ -163,8 +165,8 @@ export const Header = () => {
                 justifyContent={"center"}
                 alignItems={"center"}
                 >
-                    <Button 
-                    onClick={() => excluirPokemon(pokemon.name)}
+                    {pokemonEstaNaPokedex ? <Button 
+                    onClick={() => excluirPokemon(namePokemon)}
                         
                     w={"287px"}
                     h={"74px"}
@@ -177,9 +179,9 @@ export const Header = () => {
                     bg={"#FF6262"}
                     color={"white"}
                     _hover={{bg:"#FFA07A"}}
-                    >Exluir</Button>
-                </Box>
-                
+                    >Exluir pokemon  </Button>
+                    : ""}
+                </Box> 
             </Flex>
         )
     }
