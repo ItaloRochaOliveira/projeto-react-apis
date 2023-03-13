@@ -1,8 +1,9 @@
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
+import { typePokemonImage } from "../../img/img";
 import { detalhesDoPokemon, irParaHome, irParaPokedex } from "../../routes/coordinato";
 
 export const Pokedex = () => {
@@ -55,14 +56,18 @@ export const Pokedex = () => {
                          >{pokemon.name} </Text>
                          <Flex gap={"17px"}>
                             {pokemon.types.map((uniqueType) => {
-                                return <Box 
+                                return <Center 
+                                justifyContent={"space-around"}
                                 textAlign={"center"}
                                 bg={`typeColorType.${uniqueType.type.name}`} 
-                                w={"74px"}
+                                w={"23%"}
                                 h={"31px"}
                                 border={"1px dashed rgba(255, 255, 255, 0.47)"}
                                 borderRadius={"8px"}
-                                >{uniqueType.type.name}</Box>
+                                >
+                                    <Image src={typePokemonImage[uniqueType.type.name]}/>
+                                    {uniqueType.type.name}
+                                </Center>
                             })}
                          </Flex>
                      </Box>

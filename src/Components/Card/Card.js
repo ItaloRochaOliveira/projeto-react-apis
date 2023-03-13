@@ -3,16 +3,15 @@ import { PokemonContexto } from "../../contexto/PokemonContexto";
 import { detalhesDoPokemon } from "../../routes/coordinato";
 import { useNavigate } from "react-router-dom";
 import { usePokemon } from "../../hooks/usePokemon";
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react";
+import { typePokemonImage } from "../../img/img";
 
 export const Card = ({
-    namePokemon,
+    data
 }) => {
     const navigate = useNavigate()
 
     const {pokemonNaPokedex, setPokemonNaPokedex} = useContext(PokemonContexto)
-
-    const [data, isLoading, erro] = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, namePokemon, {})
            
     const capturarPokemon = (name) => {
         const temPokemon = pokemonNaPokedex.find((pokemon) => pokemon.name === name)
@@ -63,14 +62,20 @@ export const Card = ({
                     </Text>
                     <Flex gap={"17px"}>
                     {data.types.map((uniqueType) => {
-                        return <Box
+                        return <Center
+                        justifyContent={"space-around"}
                         textAlign={"center"}
-                        bg={`typeColorType.${uniqueType.type.name}`} 
-                        w={"74px"}
+                        bg={`typeColorType.${uniqueType.type.name}`}
+                        backgroundImage={`url(typePokemonImage.${uniqueType.type.name}.data)`}
+                        w={"23%"}
                         h={"31px"}
                         border={"1px dashed rgba(255, 255, 255, 0.47)"}
                         borderRadius={"8px"}
-                        >{uniqueType.type.name}</Box>
+                        >
+                            <Image src={typePokemonImage[uniqueType.type.name]}/>
+                            {uniqueType.type.name}
+                        </Center>
+
                     })}
                     </Flex>
                 </Box>

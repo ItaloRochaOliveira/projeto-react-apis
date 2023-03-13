@@ -2,13 +2,17 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { usePokemon } from "../../hooks/usePokemon";
 import { Box, Center, Flex, Heading, Image, Progress, Text } from "@chakra-ui/react";
+import { typePokemonImage } from "../../img/img";
 
 export const Detalhes = () => {
     const {namePokemon} = useParams()
    
-    const [data, carregando, erro] = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, namePokemon, {})
-    
-    const encutarStatus = (status) => {
+    const [bananinha, carregando, erro] = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, [{name: namePokemon}], [], "detalhes")
+    console.log(bananinha)
+    const data = {...bananinha[0]}
+    console.log(data)
+
+    const encurtarStatus = (status) => {
         if(status === "special-attack"){
             return "Sp-Atk"
         } else if(status === "special-defense"){
@@ -30,6 +34,8 @@ export const Detalhes = () => {
             
             {data.name !== undefined &&
                 <Flex
+                wrap={"wrap"}
+                direction={"column"}
                 position={"relative"}
 
                 w={"95vw"}
@@ -39,7 +45,6 @@ export const Detalhes = () => {
 
                     color={"white"}
 
-                    ml={"40px"}
                     pt={"50px"}
 
                     font={"padrao"}
@@ -48,22 +53,26 @@ export const Detalhes = () => {
                     >
                         Detalhes:
                     </Text>
-                    <Box 
-                    display={"flex"}
+                    <Flex
+                    wrap={"wrap"}
+                    direction={"row"}
+                    justify={["center", "center", "start"]}
                     
-                    m={"10px"}
                     bg={`typeColorCard.${data.types[0]?.type.name}`}
-                    h={"663px"}
-                    minW={"95vw"}
+                    minH={"663px"}
+                    w={"95vw"}
                     mt={"150px"}
                     borderRadius={"12px"}
                     >
-                    <Flex direction={"column"} >
+                    <Flex 
+                    direction={["row", "row", "column"]} 
+                    order={["2", "2", "2", "0"]} >
                         <Center
+
                         bg={"white"}
 
-                        w={"282px"}
-                        h={"282px"}
+                        w={["100px", "100px", "282px"]}
+                        h={["100px", "100px","282px"]}
                         m={"26px"}
                         borderRadius={"8px"}
                         >
@@ -77,8 +86,8 @@ export const Detalhes = () => {
                         <Center
                         bg={"white"}
 
-                        w={"282px"}
-                        h={"282px"}
+                        w={["100px", "100px", "282px"]}
+                        h={["100px", "100px","282px"]}
                         m={"26px"}
                         borderRadius={"8px"}
                         >
@@ -92,6 +101,7 @@ export const Detalhes = () => {
                         
                     </Flex>
                     <Box
+                    order={["1", "1", "1", "2"]}
                     bg={"white"}
 
                     minW={"360px"}
@@ -113,7 +123,7 @@ export const Detalhes = () => {
                                 <Text 
                                 display={"flex"}
                                 justifyContent={"end"}
-                                w={"20%"}>{encutarStatus(state.stat.name)}</Text>
+                                w={"20%"}>{encurtarStatus(state.stat.name)}</Text>
                                 <Text
                                 display={"flex"}
                                 justifyContent={"center"}
@@ -123,9 +133,10 @@ export const Detalhes = () => {
                                 display={"flex"}
                                 alignSelf={"center"}
 
-                                value={state.base_stat} 
-                                colorScheme={state.base_stat < 50 ? "orange" : "yellow"} 
+                                value={state.base_stat}
+                                colorScheme={state.base_stat < 50 ? "orange" : "yellow"}
                                 
+
                                 h={"10px"}
                                 w={"66%"}
                                 borderRadius={"4px"}
@@ -155,7 +166,7 @@ export const Detalhes = () => {
                         
                     </Box>
                     
-                    <Box m={"26px"}>
+                    <Box m={"26px"} order={["0", "0", "0", "3"]}>
                         <Box color={"white"} mb={"50px"}>
                             <Text
                             font={"padrao"}
@@ -169,16 +180,21 @@ export const Detalhes = () => {
                             lineHeight={"2rem"}
                             mb={"20px"}
                             >{data.name} </Text>
-                            <Flex gap={"17px"}>
+                            <Flex gap={"15px"}>
                             {data.types?.length && data.types.map((uniqueType) => {
-                                return <Box 
+                                return <Center
+                                justifyContent={"space-around"} 
                                 textAlign={"center"}
                                 bg={`typeColorType.${uniqueType.type.name}`} 
-                                w={"74px"}
+                                w={"30%"}
+                                maxW={"100px"}
                                 h={"31px"}
                                 border={"1px dashed rgba(255, 255, 255, 0.47)"}
                                 borderRadius={"8px"}
-                                >{uniqueType.type.name}</Box>
+                                >
+                                    <Image src={typePokemonImage[uniqueType.type.name]}/>
+                                    {uniqueType.type.name}
+                                </Center>
                             })}
                             </Flex>
                         </Box>
@@ -191,6 +207,12 @@ export const Detalhes = () => {
                         p={"18px"}
                         >
                             <Heading mb={"18px"}>Moves</Heading>
+                            <Flex 
+                            direction={["row", "row", "column"]}
+                            wrap={"wrap"}
+                            gap={"20px"}
+                            justify={["center", "center", "end"]}
+                            >
                             {data.moves.slice(0,5).map((move) => {
                                 return <Flex
                                 align={"center"}
@@ -204,21 +226,22 @@ export const Detalhes = () => {
                                 border= {"1px dashed rgba(0, 0, 0, 0.14)"}
                                 borderRadius= {"12px"}
                                 >
-                                    <Text align="center">{move.move.name}</Text>
+                                    <Text>{move.move.name}</Text>
                                 </Flex>
                             })}
+                            </Flex>
                         </Box>
                         </Box>
-                    </Box>
+                    </Flex>
                     <Image
                     src={data["sprites"]["other"]["official-artwork"]["front_default"]}
                     
-                    position={"absolute"}
-                    top={"0"}
-                    right={"0"}
+                    position={ "absolute"}
+                    top={["14%","14%", "14%", "0"]}
+                    right={["20","20", "0"]}
 
-                    w={["50px", "50px","50px", "270px"]}
-                    h={["50px", "50px","50px", "270px"]}
+                    w={["100px", "100px","270px", "270px"]}
+                    h={["100px", "100px","270px", "270px"]}
                     />
                </Flex>
             }
