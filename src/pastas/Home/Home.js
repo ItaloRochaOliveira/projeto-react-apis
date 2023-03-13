@@ -1,18 +1,29 @@
 import React, { useContext, useEffect, useState} from "react";
-import { Footer } from "../../Components/Footer/Footer";
-import { Header } from "../../Components/Header/Header";
 import { Card } from "../../Components/Card/Card";
-import { BotaoPokedex, CorDaMain, HeaderLogin, Pokedex, TodosPokemons } from "./styled";
-import {useNavigate} from "react-router-dom"
-import { irParaPokedex } from "../../routes/coordinato";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { usePokemon } from "../../hooks/usePokemon";
 
 export const Home = () => {
-    const {pokedex} = useContext(PokemonContexto)
+    const [data, setData] = useState([])
+    
+    const {pokemon} = useContext(PokemonContexto)
+    console.log("linha 11 do returno do hook usePokemon na home:", pokemon)
+
+    const [dataPokemon, isLoading, erro] = pokemon
+    console.log("linha 13 da home, data:", dataPokemon)
+    console.log("linha 14 da home, isLoading:", isLoading)
+    console.log("linha 15 da home, erro: ", erro)
+    console.log(data)
+   
+    
+    useEffect(()=> {
+        setData(dataPokemon)
+    }, [isLoading])
+
     return(
         <>
-            <Box bg={"#5E5E5E"}>
+            <Box bg={"#5E5E5E"} minH={"100vh"}>
                 <Text 
                 color={"white"}
 
@@ -24,13 +35,12 @@ export const Home = () => {
                 lineHeight={"4.5rem"}
                 >Todos Pokémons:</Text>
                     <Flex wrap={"wrap"} justify={"center"}>
-                        {pokedex.map((pokemon) => {
-                            return <Card key={pokemon.name} namePokemon={pokemon.name}/> 
+                        {data !== undefined && data.map((pokemon) => {
+                            {Date.now()}
+                            return <Card propriedade={pokemon.id } key={pokemon.id * Math.random()} data={pokemon}/> 
                         })}
                     </Flex>
             </Box>
-    
-            <Footer />
         </>
     )
 }

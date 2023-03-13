@@ -1,28 +1,19 @@
-import React, {useState, useEffect, createContext} from "react"
-import axios from "axios"
+import React, {useState, createContext} from "react"
+import { usePokemon } from "../hooks/usePokemon"
 
 export const PokemonContexto = createContext()
 
 export const PokemonProvider = ({ children }) => {
-    const [pokedex, setPokedex] = useState([])
     const [pokemonNaPokedex, setPokemonNaPokedex] = useState([])
    
-    const carregarPokedex = async() => {
-        try{
-            const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=30&offset=0")
-            setPokedex(response.data.results)
-        } catch(erro){
-            console.log(erro.response)
-        }
-    }
+    const [dataPokedex, isLoadingPokedex, erroPokedex] = usePokemon("https://pokeapi.co/api/v2/pokemon?limit=30&offset=0", "", [], "pokedex")
 
-    useEffect(() => {
-        carregarPokedex()
-    },
-    [])
+    // [{name: "bulbasaur"}, {name: "raticate"}, {name: "rattata"}]
+    const pokemon = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, dataPokedex, [], "pokemon")
+    console.log("linha 13 do returno do hook usePokemon na contexto:", pokemon)
 
     return (
-        <PokemonContexto.Provider value={{pokedex, pokemonNaPokedex, setPokemonNaPokedex}}>
+        <PokemonContexto.Provider value={{pokemon, pokemonNaPokedex, setPokemonNaPokedex}}>
             {children}
         </PokemonContexto.Provider>
     )

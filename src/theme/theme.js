@@ -1,4 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
+import { typePokemonImage } from "../img/img";
+import { Progress } from "./component/Progress";
 
 export const theme = extendTheme({
     colors: {
@@ -22,7 +24,7 @@ export const theme = extendTheme({
             ground: "#D97745",
             normal: "#8A8A8A",
             flying: "#6892B0"
-        }
+        },
     },
     font: {
         padrao: {
@@ -30,5 +32,19 @@ export const theme = extendTheme({
             fontStyle:"normal",
             fontWeight: 700
         }
+    },
+    Progress,
+    Image: {
+      links: {
+        typePokemonImage: typePokemonImage
+      }
     }
 })
+
+export const breakpoints = {
+  sm: '320px',
+  md: '768px',
+  lg: '960px',
+  xl: '1200px',
+  '2xl': '1536px',
+}
