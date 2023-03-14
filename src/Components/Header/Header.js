@@ -128,7 +128,7 @@ export const Header = () => {
             lineHeight={"34px"}>pokédex</Button>
         </Box>}
         {location.pathname === "/pokedex" && <Box w={["0%", "0%", "25%"]}></Box>}
-        {location.pathname === `/detalhes/${namePokemon}` && 
+        {location.pathname.includes(`/detalhes/${namePokemon}`) && 
             <Box 
             w={["100%", "100%", "25%"]}
             

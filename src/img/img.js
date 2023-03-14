@@ -1,4 +1,8 @@
 import pokemonHeader from "./pokemon.png"
+import pokebola from "./pokebola.png"
+import pokebolaDetalhes from "./pokebolDetalhes.png"
+
+//tipos
 import poison from "./poison.png"
 import grass from "./grass.png"
 import fire from "./fire.png"
@@ -19,6 +23,9 @@ import rock from "./rock.png"
 import steel from "./steel.png"
 
 export const pokemon = pokemonHeader
+
+export const pokebolaBackground = pokebola
+export const pokebolaBackgroundDetalhes = pokebolaDetalhes
 
 export const typePokemonImage = {
     poison: poison,
