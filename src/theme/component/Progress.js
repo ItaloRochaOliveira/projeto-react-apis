@@ -1,7 +1,9 @@
 export const Progress = {
     variants: {
-      colorScheme: {
-          yellow: "green"
+      yellow: {
+          filledTrack:{
+            bg: "green"
+          } 
       }
     }
   }
