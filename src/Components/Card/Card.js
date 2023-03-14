@@ -7,9 +7,11 @@ import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react";
 import { typePokemonImage } from "../../img/img";
 
 export const Card = ({
-    data
+    name
 }) => {
     const navigate = useNavigate()
+
+    const [data, isLoading, erro] = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, name, [] )
 
     const {pokemonNaPokedex, setPokemonNaPokedex} = useContext(PokemonContexto)
            
@@ -47,7 +49,7 @@ export const Card = ({
             >
                 <Box color={"white"} mb={"50px"}>
                     <Text 
-                    font={"padrao"}
+                    textStyle="padrao"
                     fontSize={"1.2rem"}
                     lineHeight={"1rem"}
                     >#{data.id}

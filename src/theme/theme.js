@@ -26,7 +26,7 @@ export const theme = extendTheme({
             flying: "#6892B0"
         },
     },
-    font: {
+    textStyles: {
         padrao: {
             fontFamily:"Poppins",
             fontStyle:"normal",

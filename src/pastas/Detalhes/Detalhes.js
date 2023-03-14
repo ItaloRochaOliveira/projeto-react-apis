@@ -7,10 +7,7 @@ import { typePokemonImage } from "../../img/img";
 export const Detalhes = () => {
     const {namePokemon} = useParams()
    
-    const [bananinha, carregando, erro] = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, [{name: namePokemon}], [], "detalhes")
-    console.log(bananinha)
-    const data = {...bananinha[0]}
-    console.log(data)
+    const [data, carregando, erro] = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, namePokemon, [], "detalhes")
 
     const encurtarStatus = (status) => {
         if(status === "special-attack"){
@@ -34,8 +31,7 @@ export const Detalhes = () => {
             
             {data.name !== undefined &&
                 <Flex
-                wrap={"wrap"}
-                direction={"column"}
+                direction={["column"]}
                 position={"relative"}
 
                 w={"95vw"}
@@ -54,9 +50,7 @@ export const Detalhes = () => {
                         Detalhes:
                     </Text>
                     <Flex
-                    wrap={"wrap"}
-                    direction={"row"}
-                    justify={["center", "center", "start"]}
+                    direction={["column", "column","column","column", "row"]}
                     
                     bg={`typeColorCard.${data.types[0]?.type.name}`}
                     minH={"663px"}
@@ -66,7 +60,9 @@ export const Detalhes = () => {
                     >
                     <Flex 
                     direction={["row", "row", "column"]} 
-                    order={["2", "2", "2", "0"]} >
+                    order={["3", "3", "3", "3", "0"]} 
+                    justify={"center"}
+                    >
                         <Center
 
                         bg={"white"}
@@ -100,73 +96,76 @@ export const Detalhes = () => {
                         </Center>
                         
                     </Flex>
-                    <Box
+                    <Flex
+                    justify={"center"}
                     order={["1", "1", "1", "2"]}
-                    bg={"white"}
-
-                    minW={"360px"}
-                    w={"27%"}
-                    p={"18px"}
-                    m={"26px"}
-                    
-                    borderRadius={"12px"}
                     >
-                        <Heading
-                        mb={"20px"}
-                        >Status básicos</Heading>
+                        <Box
+                        bg={"white"}
+
+                        minW={"360px"}
+                        p={"18px"}
+                        m={"26px"}
                         
-                        {data.stats.map((state) => {
-                            return <Flex
+                        borderRadius={"12px"}
+                        >
+                            <Heading
+                            mb={"20px"}
+                            >Status básicos</Heading>
+                            
+                            {data.stats.map((state) => {
+                                return <Flex
+                                gap={"5px"}
+                                my={"5px"}
+                                >
+                                    <Text 
+                                    display={"flex"}
+                                    justifyContent={"end"}
+                                    w={"20%"}>{encurtarStatus(state.stat.name)}</Text>
+                                    <Text
+                                    display={"flex"}
+                                    justifyContent={"center"}
+                                    
+                                    w={"20%"}>{state.base_stat}</Text>
+                                    <Progress 
+                                    display={"flex"}
+                                    alignSelf={"center"}
+
+                                    value={state.base_stat}
+                                    colorScheme={state.base_stat < 50 ? "orange" : "yellow"}
+                                    
+
+                                    h={"10px"}
+                                    w={"66%"}
+                                    borderRadius={"4px"}
+                                    />
+                                    </Flex>
+                            })}
+                            <Flex
                             gap={"5px"}
                             my={"5px"}
                             >
                                 <Text 
                                 display={"flex"}
                                 justifyContent={"end"}
-                                w={"20%"}>{encurtarStatus(state.stat.name)}</Text>
+                                w={"20%"}>Total</Text>
                                 <Text
                                 display={"flex"}
                                 justifyContent={"center"}
                                 
-                                w={"20%"}>{state.base_stat}</Text>
-                                <Progress 
+                                w={"20%"}>{soma(data.stats)}</Text>
+                                <Box 
                                 display={"flex"}
-                                alignSelf={"center"}
-
-                                value={state.base_stat}
-                                colorScheme={state.base_stat < 50 ? "orange" : "yellow"}
-                                
-
-                                h={"10px"}
+                                alignSelf={"center"}                                
                                 w={"66%"}
                                 borderRadius={"4px"}
                                 />
-                                </Flex>
-                        })}
-                        <Flex
-                        gap={"5px"}
-                        my={"5px"}
-                        >
-                            <Text 
-                            display={"flex"}
-                            justifyContent={"end"}
-                            w={"20%"}>Total</Text>
-                            <Text
-                            display={"flex"}
-                            justifyContent={"center"}
+                            </Flex>
                             
-                            w={"20%"}>{soma(data.stats)}</Text>
-                            <Box 
-                            display={"flex"}
-                            alignSelf={"center"}                                
-                            w={"66%"}
-                            borderRadius={"4px"}
-                            />
-                        </Flex>
-                        
-                    </Box>
+                        </Box>
+                    </Flex>
                     
-                    <Box m={"26px"} order={["0", "0", "0", "3"]}>
+                    <Box m={"26px"} order={["0", "0", "0", "0", "3"]}>
                         <Box color={"white"} mb={"50px"}>
                             <Text
                             font={"padrao"}
@@ -203,15 +202,15 @@ export const Detalhes = () => {
                         bg={"white"} 
                         borderRadius={"8px"}
                         minW={"292px"}
-                        h={"453px"}
+                        minH={"200px"}
                         p={"18px"}
                         >
                             <Heading mb={"18px"}>Moves</Heading>
                             <Flex 
-                            direction={["row", "row", "column"]}
+                            direction={["row", "row", "row", "row", "column"]}
                             wrap={"wrap"}
                             gap={"20px"}
-                            justify={["center", "center", "end"]}
+                            justify={["center", "center", "center", "center", "end"]}
                             >
                             {data.moves.slice(0,5).map((move) => {
                                 return <Flex
@@ -237,11 +236,11 @@ export const Detalhes = () => {
                     src={data["sprites"]["other"]["official-artwork"]["front_default"]}
                     
                     position={ "absolute"}
-                    top={["14%","14%", "14%", "0"]}
-                    right={["20","20", "0"]}
+                    top={["20","20", "0"]}
+                    right={["0","0", "0"]}
 
-                    w={["100px", "100px","270px", "270px"]}
-                    h={["100px", "100px","270px", "270px"]}
+                    w={["150px", "220px", "270px", "270px"]}
+                    h={["150px", "220px", "270px", "270px"]}
                     />
                </Flex>
             }

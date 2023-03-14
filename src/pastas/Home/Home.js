@@ -3,23 +3,14 @@ import { Card } from "../../Components/Card/Card";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { usePokemon } from "../../hooks/usePokemon";
+import { useCarregarPokemons } from "../../hooks/useCarregarPokemons";
 
 export const Home = () => {
-    const [data, setData] = useState([])
-    
     const {pokemon} = useContext(PokemonContexto)
-    console.log("linha 11 do returno do hook usePokemon na home:", pokemon)
-
-    const [dataPokemon, isLoading, erro] = pokemon
-    console.log("linha 13 da home, data:", dataPokemon)
-    console.log("linha 14 da home, isLoading:", isLoading)
-    console.log("linha 15 da home, erro: ", erro)
-    console.log(data)
-   
+    const [data, isLoading, erro] = pokemon
     
-    useEffect(()=> {
-        setData(dataPokemon)
-    }, [isLoading])
+    const dataa = useCarregarPokemons(data)
+    console.log(dataa)
 
     return(
         <>
@@ -36,8 +27,7 @@ export const Home = () => {
                 >Todos Pokémons:</Text>
                     <Flex wrap={"wrap"} justify={"center"}>
                         {data !== undefined && data.map((pokemon) => {
-                            {Date.now()}
-                            return <Card propriedade={pokemon.id } key={pokemon.id * Math.random()} data={pokemon}/> 
+                            return <Card key={pokemon.id} name={pokemon.name}/> 
                         })}
                     </Flex>
             </Box>
