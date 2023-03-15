@@ -1,5 +1,4 @@
 import { extendTheme } from "@chakra-ui/react";
-import { typePokemonImage } from "../img/img";
 import { Progress } from "./component/Progress";
 import { colors } from "./colors/colors";
 

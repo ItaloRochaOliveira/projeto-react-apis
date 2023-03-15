@@ -5,7 +5,7 @@ export const colors = {
         water: "#71C3FF",
         bug: "#76A866",
         poison: "purple",
-        electric: "yellow",
+        electric: "#F4D24B99",
         ground: "brown",
         normal: "#BF9762"
     },

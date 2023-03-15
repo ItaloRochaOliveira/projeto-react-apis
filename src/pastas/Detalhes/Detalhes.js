@@ -14,6 +14,7 @@ import {
   pokebolaBackground,
   typePokemonImage,
   pokebolaBackgroundDetalhes,
+  pokebolaBackgroundDetalhesNoCard,
 } from "../../img/img";
 
 export const Detalhes = () => {
@@ -44,22 +45,15 @@ export const Detalhes = () => {
     <Box
       key={data.id}
       bg={"#5E5E5E"}
-      minH={"150vh"}
+      h={["220vh", "200vh", "200vh", "200vh", "140vh"]}
       display={"flex"}
       justifyContent={"center"}
       position={"relative"}
+      bgImage={pokebolaBackgroundDetalhes}
+      bgRepeat={"no-repeat"}
+      backgroundSize={["100em", "100em", "100em", "100em center", "90em"]}
+      bgPosition={"center top"}
     >
-        
-      <Box
-        w={"90%"}
-        h={"80%"}
-        position={"absolute"}
-        bgImage={pokebolaBackgroundDetalhes}
-        bgPosition={"center"}
-        bgRepeat={"no-repeat"}
-        bgSize={"100%"}
-        zIndex={"0"}
-      />
       {data.name !== undefined && (
         <Flex direction={["column"]} position={"relative"} w={"95vw"}>
           <Text
@@ -77,8 +71,13 @@ export const Detalhes = () => {
             bg={`typeColorCard.${data.types[0]?.type.name}`}
             minH={"663px"}
             w={"95vw"}
-            mt={"150px"}
+            my={"150px"}
             borderRadius={"12px"}
+            position={"absolute"}
+            bgImage={["none","none", "none", "none", pokebolaBackgroundDetalhesNoCard]}
+            bgRepeat={"no-repeat"}
+            backgroundSize={"contain"}
+            bgPosition={ "right"}
           >
             <Flex
               direction={["row", "row", "row", "row", "column"]}
@@ -101,7 +100,6 @@ export const Detalhes = () => {
                 />
               </Center>
               <Center
-                // bg={["none", "none", "white"]}
                 bg={"white"}
                 w={["100%", "100%", "100%", "100%", "282px"]}
                 h={["150px", "150px", "282px"]}
@@ -122,7 +120,7 @@ export const Detalhes = () => {
               direction={"column"}
               order={["1", "1", "1", "2"]}
               bg={"white"}
-              minW={"360px"}
+              minW={"27%"}
               p={"18px"}
               m={"26px"}
               borderRadius={"12px"}
@@ -131,7 +129,7 @@ export const Detalhes = () => {
 
               {data.stats.map((state) => {
                 return (
-                  <Flex gap={"5px"} my={"5px"}>
+                  <Flex borderTop={"1px solid #F0F0F0"} gap={"5px"} py={"5px"}>
                     <Text display={"flex"} justifyContent={"end"} w={"20%"}>
                       {encurtarStatus(state.stat.name)}
                     </Text>
@@ -143,8 +141,7 @@ export const Detalhes = () => {
                       alignSelf={"center"}
                       value={state.base_stat}
                       variant={state.base_stat < 50 ? "orange" : "yellow"}
-                      // colorScheme={state.base_stat < 50 ? "orange" : "yellow"}
-
+                     
                       h={"10px"}
                       w={"66%"}
                       borderRadius={"4px"}
@@ -152,7 +149,7 @@ export const Detalhes = () => {
                   </Flex>
                 );
               })}
-              <Flex gap={"5px"} my={"5px"}>
+              <Flex borderTop={"1px solid #F0F0F0"} gap={"5px"} my={"5px"}>
                 <Text display={"flex"} justifyContent={"end"} w={"20%"}>
                   Total
                 </Text>
@@ -184,7 +181,7 @@ export const Detalhes = () => {
                   lineHeight={"2rem"}
                   mb={"20px"}
                 >
-                  {data.name}{" "}
+                  {data.name[0].toUpperCase() + data.name.substring(1).toLowerCase()}
                 </Text>
                 <Flex gap={"15px"}>
                   {data.types?.length &&
@@ -211,7 +208,7 @@ export const Detalhes = () => {
               <Box
                 bg={"white"}
                 borderRadius={"8px"}
-                minW={"292px"}
+                minW={["200px", "292px"]}
                 minH={"200px"}
                 p={"18px"}
               >
@@ -245,10 +242,9 @@ export const Detalhes = () => {
           <Image
             src={data["sprites"]["other"]["official-artwork"]["front_default"]}
             position={"absolute"}
-            top={["20", "20", "0"]}
+            top={["64", "20", "0"]}
             right={["0", "0", "0"]}
-            w={["150px", "220px", "270px", "270px"]}
-            h={["150px", "220px", "270px", "270px"]}
+            w={["130px", "130px", "270px", "270px", "270px"]}
           />
         </Flex>
       )}

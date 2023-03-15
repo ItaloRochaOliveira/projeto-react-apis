@@ -30,8 +30,11 @@ export const Header = () => {
         <Flex
         justify={"space-between"} 
         wrap="wrap" 
-        mt={"21px"} 
-        mb={"21px"}
+        py={"21px"}
+        position={"sticky"}
+        top={"0"}
+        bg={"white"}
+        zIndex={"2"}
         >  
         {location.pathname === "/" &&  <Box w={["0%", "0%", "25%"]}></Box>}
         {location.pathname === "/pokedex" && <Box

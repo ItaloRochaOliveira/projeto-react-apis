@@ -10,8 +10,6 @@ import { excluirPokemon } from "../../utils/excluirPokemon";
 export const Card = ({ name }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  console.log(pathname);
-
   const [data, isLoading, erro] = usePokemon(
     `https://pokeapi.co/api/v2/pokemon/`,
     name,
@@ -41,20 +39,23 @@ export const Card = ({ name }) => {
       <Box
         key={data.id}
         position={"relative"}
-        minW={"300px"}
-        w={"400px"}
+        minW={"20%"}
+        w={"420px"}
         m={"10px"}
       >
         <Box
           bg={`typeColorCard.${data.types[0]?.type.name}`}
           minH={"220px"}
           maxH={"210px"}
-          minW={"300px"}
+          minW={"20%"}
           mt={"60px"}
           p={"20px"}
           borderRadius={"12px"}
           position={"relative"}
-          overflow={"hidden"}
+          bgImage={pokebolaBackground}
+          bgPosition={["center top", "right top"]}
+          bgRepeat={"no-repeat"}
+          bgSize={"fit"}
         >
           <Box color={"white"} mb={"50px"}>
             <Text textStyle="padrao" fontSize={"1.2rem"} lineHeight={"1rem"}>
@@ -66,7 +67,7 @@ export const Card = ({ name }) => {
               lineHeight={"2rem"}
               mb={"20px"}
             >
-              {data.name}
+              {data.name[0].toUpperCase() + data.name.substring(1).toLowerCase()}
             </Text>
             <Flex gap={"17px"}>
               {data.types.map((uniqueType) => {
@@ -75,7 +76,8 @@ export const Card = ({ name }) => {
                     justifyContent={"space-around"}
                     textAlign={"center"}
                     bg={`typeColorType.${uniqueType.type.name}`}
-                    w={"23%"}
+                    w={"31%"}
+                    maxW={"90px"}
                     h={"31px"}
                     border={"1px dashed rgba(255, 255, 255, 0.47)"}
                     borderRadius={"8px"}
@@ -87,12 +89,12 @@ export const Card = ({ name }) => {
               })}
             </Flex>
           </Box>
-          <Flex justify={"space-between"}>
+          <Flex justify={"space-between"} w={"100%"}>
             <Button
               onClick={() => detalhesDoPokemon(navigate, data.name)}
               textDecor={"underline"}
               border={"none"}
-              bg={`typeColorCard.${data.types[0]?.type.name}`}
+              bg={`transparent`}
               color={"white"}
               _hover={{ bg: "none" }}
             >
@@ -121,27 +123,13 @@ export const Card = ({ name }) => {
               {pathname === "/" ? "capturar!" : "Excluir"}
             </Button>
           </Flex>
-          
-          <Box
-          w={ "55%"}
-          h={"95%"}
-          position={"absolute"}
-          top={["4", "0"]}
-          right={"0"}
-
-          bgImage={pokebolaBackground}
-          bgPosition={"center"}
-          bgRepeat={"no-repeat"}
-          bgSize={"cover"}
-          zIndex={"0"}
-        />
         </Box>
         
         
         <Image
             src={data["sprites"]["other"]["official-artwork"]["front_default"]}
             justifyContent={"center"}
-            w={["150px", "193px"]}
+            w={["110px", "40%", "180px", "193px"]}
             position={"absolute"}
             top={["4", "0"]}
             right={"0"}
