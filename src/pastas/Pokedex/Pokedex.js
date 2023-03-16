@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import React from "react";
 import { useContext } from "react";
 import { Card } from "../../Components/Card/Card";
@@ -8,21 +8,33 @@ export const Pokedex = () => {
   const { pokemonNaPokedex } = useContext(PokemonContexto);
 
   return (
-    <Box minH={"100vh"} bg={"#5E5E5E"} >
+    <Box minH={"100vh"} bg={"#5E5E5E"}>
       <Text
         color={"white"}
         ml={"40px"}
         pt={"50px"}
-        font={"padrao"}
+        textStyle="padrao"
         fontSize={"3rem"}
         lineHeight={"4.5rem"}
       >
-        Todos Pokémons:
+        Meus Pokémons:
       </Text>
-      <Flex justify={"center"} wrap={"wrap"} >
-        {pokemonNaPokedex.map((pokemon) => {
-          return <Card key={pokemon.id} name={pokemon.name} />;
-        })}
+      <Flex minH={"100vh"} justify={"center"} wrap={"wrap"}>
+        {pokemonNaPokedex && pokemonNaPokedex.length === 0 && (
+          <Flex align={["start", "start", "center"]} mt={["10%", "10%", "0"]}>
+            <Heading textAlign={"center"} color={"white"}>
+              Aguardando pokemons serem capturados...
+            </Heading>
+          </Flex>
+        )}
+        {pokemonNaPokedex.length > 0 &&
+          pokemonNaPokedex
+            .sort((a, b) => {
+              return a.id - b.id;
+            })
+            .map((pokemon) => {
+              return <Card key={pokemon.id} name={pokemon.name} />;
+            })}
       </Flex>
     </Box>
   );

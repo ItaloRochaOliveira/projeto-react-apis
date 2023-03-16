@@ -2,20 +2,25 @@ import React, { useContext } from "react";
 import { PokemonContexto } from "../../contexto/PokemonContexto";
 import { usePokemon } from "../../hooks/usePokemon";
 import { detalhesDoPokemon } from "../../routes/coordinato";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Image,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { typePokemonImage, pokebolaBackground } from "../../img/img";
 import { excluirPokemon } from "../../utils/excluirPokemon";
+import { Alert } from "../alert";
 
 export const Card = ({ name }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const [data, isLoading, erro] = usePokemon(
-    `https://pokeapi.co/api/v2/pokemon/`,
-    name,
-    []
-  );
-
+  const [data] = usePokemon(`https://pokeapi.co/api/v2/pokemon/`, name, []);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { pokemonNaPokedex, setPokemonNaPokedex } = useContext(PokemonContexto);
 
   const capturarPokemon = (name) => {
@@ -25,6 +30,7 @@ export const Card = ({ name }) => {
     if (temPokemon) {
       alert("Pokemon já está na pokedex");
     } else {
+      onOpen();
       setPokemonNaPokedex([
         ...pokemonNaPokedex,
         {
@@ -32,17 +38,13 @@ export const Card = ({ name }) => {
           name: data.name,
         },
       ]);
+      setTimeout(() => onClose(), 3000);
     }
   };
+
   return (
     data.name !== undefined && (
-      <Box
-        key={data.id}
-        position={"relative"}
-        minW={"20%"}
-        w={"420px"}
-        m={"10px"}
-      >
+      <Box position={"relative"} minW={"20%"} w={"420px"} m={"10px"}>
         <Box
           bg={`typeColorCard.${data.types[0]?.type.name}`}
           minH={"220px"}
@@ -67,12 +69,14 @@ export const Card = ({ name }) => {
               lineHeight={"2rem"}
               mb={"20px"}
             >
-              {data.name[0].toUpperCase() + data.name.substring(1).toLowerCase()}
+              {data.name[0].toUpperCase() +
+                data.name.substring(1).toLowerCase()}
             </Text>
             <Flex gap={"17px"}>
               {data.types.map((uniqueType) => {
                 return (
                   <Center
+                    key={uniqueType.type.name}
                     justifyContent={"space-around"}
                     textAlign={"center"}
                     bg={`typeColorType.${uniqueType.type.name}`}
@@ -104,12 +108,16 @@ export const Card = ({ name }) => {
               onClick={
                 pathname === "/"
                   ? () => capturarPokemon(data.name)
-                  : () =>
+                  : () => {
                       excluirPokemon(
                         data.name,
                         pokemonNaPokedex,
-                        setPokemonNaPokedex
-                      )
+                        setPokemonNaPokedex,
+
+                        onOpen,
+                        onClose
+                      );
+                    }
               }
               bg={pathname === "/" ? "white" : "#FF6262"}
               w={"146px"}
@@ -124,16 +132,21 @@ export const Card = ({ name }) => {
             </Button>
           </Flex>
         </Box>
-        
-        
+
         <Image
-            src={data["sprites"]["other"]["official-artwork"]["front_default"]}
-            justifyContent={"center"}
-            w={["110px", "40%", "180px", "193px"]}
-            position={"absolute"}
-            top={["4", "0"]}
-            right={"0"}
-          />
+          src={data["sprites"]["other"]["official-artwork"]["front_default"]}
+          justifyContent={"center"}
+          w={["110px", "40%", "180px", "193px"]}
+          position={"absolute"}
+          top={["4", "0"]}
+          right={"0"}
+        />
+        <Alert
+          isOpen={isOpen}
+          onOpen={onOpen}
+          onClose={onClose}
+          pathname={pathname}
+        />
       </Box>
     )
   );
