@@ -10,5 +10,5 @@ export const excluirPokemon = (
     const pokemon = pokemonNaPokedex.filter((pokemon) => pokemon.name !== name);
     setPokemonNaPokedex(pokemon);
     onClose();
-  }, 2000);
+  }, 1000);
 };

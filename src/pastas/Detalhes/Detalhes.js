@@ -17,12 +17,13 @@ import {
   loadingScreen,
 } from "../../img/img";
 import { ErroPage } from "../ErroPage";
+import { BASE_URL } from "../../constants/BASE_URL";
 
 export const Detalhes = () => {
   const { namePokemon } = useParams();
 
-  const [data, isLoading, erro] = usePokemon(
-    `https://pokeapi.co/api/v2/pokemon/`,
+  const [data, isLoading, erro, mostrarErro] = usePokemon(
+    BASE_URL,
     namePokemon,
     []
   );
@@ -33,7 +34,7 @@ export const Detalhes = () => {
     } else if (status === "special-defense") {
       return "Sp-Def";
     } else {
-      return status[0].toUpperCase() + status.substring(1);
+      return status
     }
   };
 
@@ -42,7 +43,7 @@ export const Detalhes = () => {
   };
 
   if (erro && !isLoading) {
-    return <ErroPage />;
+    return <ErroPage mostrarErro={mostrarErro}/>;
   } else {
     return (
       <Box
@@ -62,7 +63,7 @@ export const Detalhes = () => {
             position={"absolute"}
             color={"white"}
             pt={"50px"}
-            textStyle={"padrao"}
+            textStyle={"poppins"}
             fontSize={"3rem"}
             lineHeight={"4.5rem"}
           >
@@ -159,7 +160,7 @@ export const Detalhes = () => {
                         gap={"5px"}
                         py={"5px"}
                       >
-                        <Text display={"flex"} justifyContent={"end"} w={"20%"}>
+                        <Text display={"flex"} justifyContent={"end"} w={"20%"} textTransform={"capitalize"}>
                           {encurtarStatus(state.stat.name)}
                         </Text>
                         <Text
@@ -200,21 +201,21 @@ export const Detalhes = () => {
                 <Box m={"26px"} order={["0", "0", "0", "0", "3"]}>
                   <Box color={"white"} mb={"50px"}>
                     <Text
-                      font={"padrao"}
+                      textStyle={"inter"}
                       fontSize={"1.2rem"}
                       lineHeight={"1rem"}
                       mb={"10px"}
                     >
-                      #{data.id}
+                      #{data.id < 10 ? `0${data.id}` : data.id}
                     </Text>
                     <Text
-                      textStyle={"padrao"}
+                      textStyle={"inter"}
                       fontSize={"3rem"}
                       lineHeight={"2rem"}
                       mb={"20px"}
+                      textTransform={"capitalize"}
                     >
-                      {data.name[0].toUpperCase() +
-                        data.name.substring(1).toLowerCase()}
+                      {data.name}
                     </Text>
                     <Flex gap={"15px"}>
                       {data.types?.length &&
@@ -288,7 +289,7 @@ export const Detalhes = () => {
                 }
                 position={"absolute"}
                 top={["64", "20", "0"]}
-                right={["0", "0", "0"]}
+                right={["0", "5"]}
                 w={["130px", "130px", "270px", "270px", "270px"]}
               />
             </>

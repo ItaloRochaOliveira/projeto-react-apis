@@ -7,7 +7,8 @@ export const colors = {
         poison: "purple",
         electric: "#F4D24B99",
         ground: "brown",
-        normal: "#BF9762"
+        normal: "#BF9762",
+        fairy: "purple",
     },
     typeColorType: {
         grass: "#70B873",

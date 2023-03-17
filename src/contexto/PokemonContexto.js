@@ -1,4 +1,5 @@
 import React, {useState, createContext, useEffect} from "react"
+import { BASE_URL } from "../constants/BASE_URL"
 import { usePokemon } from "../hooks/usePokemon"
 
 export const PokemonContexto = createContext()
@@ -19,7 +20,7 @@ export const PokemonProvider = ({ children }) => {
         }
     }, [])
 
-    const pokemon = usePokemon("https://pokeapi.co/api/v2/pokemon?limit=30&offset=0")
+    const pokemon = usePokemon(`${BASE_URL}?limit=30&offset=0`)
     return (
         <PokemonContexto.Provider value={{pokemon, pokemonNaPokedex, setPokemonNaPokedex}}>
             {children}
