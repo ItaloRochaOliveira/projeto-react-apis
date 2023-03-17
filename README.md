@@ -41,7 +41,8 @@ npm start
 ### Funcionalidades
 ```bash
 . Listagem: Listagem de todos os 1008 pokemons existentes, organizados por página (20 em cada);
-. Detalhes: Cada card exibirá informações detalhadas como Base Stats (estatisticas) e Movimentos ao ser clicado;
+. Detalhes: Cada card exibirá informações detalhadas como Base Stats 
+(estatisticas) e Movimentos ao ser clicado;
 . Captura: Adicionar pokemons a sua Pokedex pessoal;
 . Responsividade: Aplicação totalmente responsiva para Desktop, Tablet e Celulares;
 ```
