@@ -34,7 +34,7 @@ npm start
 
 ### Layout Desktop
 
-| <img src="./src/assets/layout-desktop-1.png" width=100%><sub>Home Page</sub><br> | <img src="./src/assets/layout-desktop-2.png" width=100%><br><sub>Home Page</sub><br>
+| <img src="./src/assets/layout-desktop-1.png" width=100%><sub>Home Page</sub><br> | <img src="./src/assets/layout-desktop-2.png" width=100%><br><sub>Detalhes</sub><br>
 | :---: | :---: |
 
 
@@ -49,9 +49,16 @@ npm start
 ### Bibliotecas Utilizadas
 
 ```bash
-chakra-ui
 axios
 react-router-dom
+@chakra-ui/react
+@emotion/react
+@emotion/styled
+framer-motion
+@chakra-ui/icons
+react-icons
+@fontsource/inter
+@fontsource/poppins
 ```
 
 ## 💡Programas utilizados:
@@ -69,6 +76,5 @@ react-router-dom
 
 ## 📫 Contato
 
-[![E-mail](mailto:italo.rocha.de.oliveira@gmail.com)
-
-[![LinkedIn](https://www.linkedin.com/in/italorochaoliveira/)
+ <a href = "mailto:italo.rocha.de.oliveira@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" alvo ="_blank"></a>
+  <a href="https://www.linkedin.com/in/italorochaoliveira/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
