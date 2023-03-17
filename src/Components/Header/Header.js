@@ -17,8 +17,7 @@ export const Header = () => {
   // outra forma de confirmar a página
   // const detalhes = /^\/detalhes\/.+/.test(location.pathname)
 
-  const { pokedex, pokemonNaPokedex, setPokemonNaPokedex } =
-    useContext(PokemonContexto);
+  const { pokemonNaPokedex, setPokemonNaPokedex } = useContext(PokemonContexto);
 
   const pokemonEstaNaPokedex = pokemonNaPokedex.find(
     (pokemon) => pokemon.name === namePokemon
@@ -27,42 +26,12 @@ export const Header = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Flex justify={"space-between"} wrap="wrap" mt={"21px"} mb={"21px"}>
+    <Flex justify={"space-between"} wrap="wrap" my={"21px"} gap={["10px", "0"]}>
       {location.pathname === "/" && (
         <Box w={["0%", "0%", "25%"]} order={["2", "2", "0"]}></Box>
       )}
-      {location.pathname === "/pokedex" && (
-        <Box
-          order={["2", "2", "0"]}
-          w={["100%", "100%", "25%"]}
-          mt={["21px", "21px", "0px"]}
-          display={"flex"}
-          justifyContent={"center"}
-          alignItems={"center"}
-        >
-          <ChevronLeftIcon
-            onClick={() => irParaHome(navigate)}
-            font={"padrao"}
-            fontSize={"24px"}
-            lineHeight={"36px"}
-            _hover={{ cursor: "pointer" }}
-          />
-          <Button
-            onClick={() => irParaHome(navigate)}
-            font={"padrao"}
-            fontSize={"24px"}
-            lineHeight={"36px"}
-            pl={"0"}
-            textDecor={"underline"}
-            border={"none"}
-            bg={`white`}
-            _hover={{ bg: "none" }}
-          >
-            Todos Pokemons
-          </Button>
-        </Box>
-      )}
-      {location.pathname === `/detalhes/${namePokemon}` && (
+      {(location.pathname === "/pokedex" ||
+        location.pathname === `/detalhes/${namePokemon}`) && (
         <Box
           order={["2", "2", "0"]}
           w={["100%", "50%", "25%"]}
@@ -70,19 +39,20 @@ export const Header = () => {
           display={"flex"}
           justifyContent={"center"}
           alignItems={"center"}
+          gap={"1px"}
         >
           <ChevronLeftIcon
             onClick={() => irParaHome(navigate)}
-            font={"padrao"}
+            textStyle={"padrao"}
             fontSize={"24px"}
             lineHeight={"36px"}
             _hover={{ cursor: "pointer" }}
           />
           <Button
             onClick={() => irParaHome(navigate)}
-            font={"padrao"}
-            fontSize={"1.5rem"}
-            lineHeight={"2.5rem"}
+            textStyle={"padrao"}
+            fontSize={"24px"}
+            lineHeight={"36px"}
             pl={"0"}
             textDecor={"underline"}
             border={"none"}
@@ -117,18 +87,17 @@ export const Header = () => {
             color={"white"}
             w={"287px"}
             h={"74px"}
-            mr={"20px"}
             fontFamily={"Poppins"}
             fontStyle={"normal"}
             fontWeight={700}
             fontSize={"24px"}
             lineHeight={"34px"}
           >
-            pokédex
+            Pokédex
           </Button>
         </Box>
       )}
-      {location.pathname === "/pokedex" && <Box w={["0%", "0%", "25%"]}></Box>}
+      {location.pathname === "/pokedex" && <Box w={["0", "100%", "25%"]}></Box>}
       {location.pathname.includes(`/detalhes/${namePokemon}`) && (
         <Box
           order={"2"}
@@ -153,7 +122,7 @@ export const Header = () => {
               w={"287px"}
               order={["2", "2", "0"]}
               h={"74px"}
-              font={"padrao"}
+              textStyle={"padrao"}
               fontSize={"1.5rem"}
               lineHeight={"2.5rem"}
               borderRadius={"8px"}
@@ -162,7 +131,7 @@ export const Header = () => {
               _hover={{ bg: "#FFA07A" }}
             >
               <Alert isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-              Exluir pokemon
+              Excluir pokemon
             </Button>
           )}
         </Box>

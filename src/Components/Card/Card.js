@@ -44,7 +44,7 @@ export const Card = ({ name }) => {
 
   return (
     data.name !== undefined && (
-      <Box position={"relative"} minW={"20%"} w={"420px"} m={"10px"}>
+      <Box position={"relative"} minW={"20%"} w={"400px"} m={"10px"}>
         <Box
           bg={`typeColorCard.${data.types[0]?.type.name}`}
           minH={"220px"}
@@ -64,7 +64,7 @@ export const Card = ({ name }) => {
               #{data.id}
             </Text>
             <Text
-              font={"padrao"}
+              textStyle={"padrao"}
               fontSize={"2rem"}
               lineHeight={"2rem"}
               mb={"20px"}
@@ -72,13 +72,19 @@ export const Card = ({ name }) => {
               {data.name[0].toUpperCase() +
                 data.name.substring(1).toLowerCase()}
             </Text>
-            <Flex gap={"17px"}>
+            <Flex gap={"15px"}>
               {data.types.map((uniqueType) => {
                 return (
                   <Center
                     key={uniqueType.type.name}
                     justifyContent={"space-around"}
+
                     textAlign={"center"}
+                    fontStyle={"normal"}
+                    fontWeight={400}
+                    fontSize={"0.8rem"}
+                    lineHeight={"1.3rem"}
+
                     bg={`typeColorType.${uniqueType.type.name}`}
                     w={"31%"}
                     maxW={"90px"}

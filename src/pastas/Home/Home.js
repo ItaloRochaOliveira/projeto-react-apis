@@ -19,7 +19,7 @@ export const Home = () => {
             color={"white"}
             ml={"40px"}
             pt={"50px"}
-            fontStyle={"padrao"}
+            textStyle={"padrao"}
             fontSize={"3rem"}
             lineHeight={"4.5rem"}
           >

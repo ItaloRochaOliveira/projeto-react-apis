@@ -62,7 +62,7 @@ export const Detalhes = () => {
             position={"absolute"}
             color={"white"}
             pt={"50px"}
-            font={"padrao"}
+            textStyle={"padrao"}
             fontSize={"3rem"}
             lineHeight={"4.5rem"}
           >
@@ -208,7 +208,7 @@ export const Detalhes = () => {
                       #{data.id}
                     </Text>
                     <Text
-                      font={"padrao"}
+                      textStyle={"padrao"}
                       fontSize={"3rem"}
                       lineHeight={"2rem"}
                       mb={"20px"}
@@ -223,7 +223,13 @@ export const Detalhes = () => {
                             <Center
                               key={uniqueType.type.name}
                               justifyContent={"space-around"}
+
                               textAlign={"center"}
+                              fontStyle={"normal"}
+                              fontWeight={400}
+                              fontSize={"0.8rem"}
+                              lineHeight={"1.3rem"}
+
                               bg={`typeColorType.${uniqueType.type.name}`}
                               w={"30%"}
                               maxW={"100px"}
