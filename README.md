@@ -34,7 +34,7 @@ npm start
 
 ### Layout Desktop
 
-| <img src="./src/assets/layout-desktop-1.png" width=600><br><sub>Home Page</sub> | <img src="./src/assets/layout-desktop-2.png" width=600><br><sub>Home Page</sub>
+| <img src="./src/assets/layout-desktop-1.png" width=100%><br><sub>Home Page</sub> | <img src="./src/assets/layout-desktop-2.png" width=600><br><sub>Home Page</sub>
 | :---: |
 
 
