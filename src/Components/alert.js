@@ -23,7 +23,7 @@ const {pathname} = useLocation()
         : 
             <>
             <ModalHeader fontSize={"2.75em"}>Oh, no!</ModalHeader>
-            <ModalBody fontSize={"1em"}>O Pokémon foi adicionado a sua Pokédex</ModalBody>
+            <ModalBody fontSize={"1em"}>O Pokémon foi removido da sua Pokedéx</ModalBody>
             </>
         }
       </ModalContent>

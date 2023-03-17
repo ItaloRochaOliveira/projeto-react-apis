@@ -1,5 +1,3 @@
-import { Alert } from "../Components/alert";
-
 export const excluirPokemon = (
   name,
   pokemonNaPokedex,
