@@ -13,7 +13,7 @@ export const Pokedex = () => {
         color={"white"}
         ml={"40px"}
         pt={"50px"}
-        textStyle="padrao"
+        textStyle="poppins"
         fontSize={"3rem"}
         lineHeight={"4.5rem"}
       >

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const usePokemon = (url, namePokemon, estadoInicial) => {
     const [data, setData] = useState(estadoInicial)
     const [carregando, setCarregando] = useState(false)
     const [erro, setErro] = useState(false)
+    const [mostrarErro, setMostrarErro] = useState("")
 
    const carregarData = () => {
         setCarregando(true)
@@ -16,7 +17,7 @@ export const usePokemon = (url, namePokemon, estadoInicial) => {
         .catch((erro) => {
             setCarregando(false)
             setErro(true)
-            console.log(erro.response)
+            setMostrarErro(erro.response.status)
         })
    }
     
@@ -24,5 +25,5 @@ export const usePokemon = (url, namePokemon, estadoInicial) => {
         carregarData()
     },
     [])
-    return [data, carregando, erro]
+    return [data, carregando, erro, mostrarErro]
 }

@@ -7,10 +7,10 @@ import { loadingScreen } from "../../img/img";
 
 export const Home = () => {
   const { pokemon } = useContext(PokemonContexto);
-  const [data, isLoading, erro] = pokemon;
+  const [data, isLoading, erro, mostrarErro] = pokemon;
 
   if (erro && !isLoading) {
-    return <ErroPage />;
+    return <ErroPage mostrarErro={mostrarErro}/>;
   } else {
     return (
       <>
@@ -19,7 +19,7 @@ export const Home = () => {
             color={"white"}
             ml={"40px"}
             pt={"50px"}
-            textStyle={"padrao"}
+            textStyle={"poppins"}
             fontSize={"3rem"}
             lineHeight={"4.5rem"}
           >
